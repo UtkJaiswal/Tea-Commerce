@@ -21,4 +21,5 @@ class Transaction(models.Model):
     from_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     to_user = models.ForeignKey(Vendor, on_delete=models.CASCADE)
     amount = models.CharField(max_length=10)
+    quantity = models.IntegerField()
     shipping_address = models.CharField(max_length=255, null=True, blank=True)

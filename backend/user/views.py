@@ -235,8 +235,10 @@ class PostTransaction(APIView):
             if user['role'] == "buyer":
                 from_user = get_object_or_404(CustomUser, id=user['id'])
                 vendor_id = request.data['vendor_id']
+                # vendor_id = Vendor.objects.get(user__id = user['id']).id
                 amount = request.data['amount']
                 shipping_address = request.data['shipping_address']
+                quantity = request.data['quantity']
 
                 vendor = Vendor.objects.get(id=vendor_id)
 
@@ -244,7 +246,8 @@ class PostTransaction(APIView):
                     from_user = from_user,
                     to_user = vendor,
                     amount = amount,
-                    shipping_address = shipping_address
+                    shipping_address = shipping_address,
+                    quantity = quantity
                 )
 
                 result['status'] = 'OK'
